@@ -3,8 +3,7 @@
     Pavel Shvarchov - 319270583
 """
 
-
-# Task 1
+#Task 1
 def Nand(x, y):
     """ 
     :param x:
@@ -16,8 +15,7 @@ def Nand(x, y):
     """
     return not (x and y)
 
-
-# Task 2
+#Task 2
 def Younger():
     """
     :return: younger name
@@ -71,56 +69,20 @@ def Younger():
         def __str__(self):
             return str(self.name)
 
-    person1 = person(input("Enter first person name:"))
+    person1=person(input("Enter first person name:"))
     person1.bdate.input()
-    person2 = person(input("Enter second person name:"))
+    person2=person(input("Enter second person name:"))
     person2.bdate.input()
-    if person1.bdate < person2.bdate:
+    if person1.bdate<person2.bdate:
         print("{} is younger".format(person1))
         return person1
-    elif person2.bdate < person1.bdate:
+    elif person2.bdate<person1.bdate:
         print("{} is younger".format(person2))
         return person2
     else:
         print("both are the same age")
         return None
 
-
-# Task 3
-def CheckNumber(x):
-    """
-    :param x:number to check
-    :type x:long, int
-    :return: true if 4*x reversed is the same as x
-    :rtype: bool
-    """
-
-    def numsize(x):
-        """
-        :param x:number to count digits
-        :type x:int
-        :return:digit count of the number, the alg doesnt consider 0 as a digit
-        :rtype:int
-        """
-        size = 0
-        while (x != 0):
-            x = int(x / 10)
-            size += 1
-        return size
-
-    def reverse(x):
-        """
-        :param x:number to reverse its digits
-        :type x:int
-        :return:reversed number
-        :rtype:int
-        """
-        y, i = 0, numsize(x)-1
-        while  i >= 0:
-            y+=(x%10)*(10**i)
-            x=int(x/10)
-            i-=1
-        return y
-
-    return x == reverse(x * 4)
-
+#Task 3
+def CheckNumber():
+    pass
