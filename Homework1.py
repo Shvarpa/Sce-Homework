@@ -33,6 +33,10 @@ def Younger():
         def __str__(self):
             return str(self.day) + '/' + str(self.month) + '' / '' + str(self.year)
 
+        def __lt__(self, other):
+            return (self.year < other.year) or (self.year == other.year and (
+            self.month < other.month or (self.month == other.month and self.day < other.day)))
+
         def input(self):
             year = input("Enter year:")
             month = input("Enter month:")
