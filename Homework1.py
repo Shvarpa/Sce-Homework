@@ -112,20 +112,15 @@ def CheckNumber(x):
         """
         :param x:number to reverse its digits
         :type x:int
-        :return:reversed number, does so by switching the starting digits with the ending digits in interations
+        :return:reversed number
         :rtype:int
         """
-        end = numsize(x) - 1
-        x = str(x)
-        start = 0
-        while (start < end):
-            x[start], x[end] = x[end], x[start]
-            start += 1
-            end -= 1
-        return x
+        y, i = 0, numsize(x)-1
+        while  i >= 0:
+            y+=(x%10)*(10**i)
+            x=int(x/10)
+            i-=1
+        return y
 
     return x == reverse(x * 4)
 
-
-CheckNumber((21978))
-CheckNumber((123))
