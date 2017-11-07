@@ -94,23 +94,38 @@ def CheckNumber(x):
     :return: true if 4*x reversed is the same as x
     :rtype: bool
     """
+
     def numsize(x):
-        size=0
-        while (x!=0):
-            x=int(x/10)
-            size+=1
+        """
+        :param x:number to count digits
+        :type x:int
+        :return:digit count of the number, the alg doesnt consider 0 as a digit
+        :rtype:int
+        """
+        size = 0
+        while (x != 0):
+            x = int(x / 10)
+            size += 1
         return size
 
     def reverse(x):
-        end=numsize(x)-1
-        x=str(x)
-        start=0
-        while (start<end):
-            x[start],x[end]=x[end],x[start]
-            start+=1
-            end-=1
+        """
+        :param x:number to reverse its digits
+        :type x:int
+        :return:reversed number, does so by switching the starting digits with the ending digits in interations
+        :rtype:int
+        """
+        end = numsize(x) - 1
+        x = str(x)
+        start = 0
+        while (start < end):
+            x[start], x[end] = x[end], x[start]
+            start += 1
+            end -= 1
         return x
 
-    return x==reverse(x*4)
+    return x == reverse(x * 4)
+
 
 CheckNumber((21978))
+CheckNumber((123))
