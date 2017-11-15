@@ -44,7 +44,10 @@ def Younger():
         print("both are the same age")
         return None
 
+
 Younger()
+
+
 # Task 3
 def CheckNumber(x):
     """
