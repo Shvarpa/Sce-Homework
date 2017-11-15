@@ -21,71 +21,30 @@ def Nand(x, y):
 def Younger():
     """
     :return: younger name
-    :rtype: person
+    :rtype: str
     """
 
-    class date:
-        def __init__(self, d=None, m=None, y=None):
-            """
-            :param d: day input
-            :type d: int
-            :param m: month input
-            :type m: int
-            :param y: year input
-            :type y: int
-            """
-            self.day = d
-            self.month = m
-            self.year = y
+    def bday_younger(d1, m1, y1, d2, m2, y2):
+        return (y1 < y2) or (y1 == y2 and (m1 < m2 or (m1 == m2 and d1 < d2)))
 
-        def __str__(self):
-            """
-            :return: string out of the date parameters
-            :rtype: str
-            """
-            return (str(self.day) + '/' + str(self.month) + '/' + str(self.year))
+    person1 = (input("Enter first person name:"))
+    print("enter {}'s birthday: ".format(person1), end="")
+    p1day, p1month, p1year = input("day:"), input("month:"), input("year:")
+    person2 = (input("Enter second person name:"))
+    print("enter {}'s birthday: ".format(person2), end="")
+    p2day, p2month, p2year = input("day:"), input("month:"), input("year:")
 
-        def __lt__(self, other):
-            """
-            :param other:
-            :type other:date
-            :return:
-            :rtype: bool
-            """
-            return (self.year < other.year) or (self.year == other.year and (
-                self.month < other.month or (self.month == other.month and self.day < other.day)))
-
-        def input(self):
-            """
-            :return: updates the date parameters by the user
-            """
-            self.year = input("Enter year:")
-            self.month = input("Enter month:")
-            self.day = input("Enter day:")
-
-    class person:
-        def __init__(self, n):
-            self.bdate = date()
-            self.name = n
-
-        def __str__(self):
-            return str(self.name)
-
-    person1 = person(input("Enter first person name:"))
-    person1.bdate.input()
-    person2 = person(input("Enter second person name:"))
-    person2.bdate.input()
-    if person1.bdate < person2.bdate:
+    if bday_younger(p1day, p1month, p1year, p2day, p2month, p2year):
         print("{} is younger".format(person1))
         return person1
-    elif person2.bdate < person1.bdate:
+    elif bday_younger(p2day, p2month, p2year, p1day, p1month, p1year):
         print("{} is younger".format(person2))
         return person2
     else:
         print("both are the same age")
         return None
 
-
+Younger()
 # Task 3
 def CheckNumber(x):
     """
@@ -184,10 +143,11 @@ def CheckNumberRec(number):
     :return: true if all digits are even, else false
     :rtype: bool
     """
-    if number==0: return True
-    if (number%2!=0):
+    if number == 0: return True
+    if (number % 2 != 0):
         return False
-    CheckNumberRec(int(number/10))
+    CheckNumberRec(int(number / 10))
+
 
 # Task 8
 def PrintReverse(number):
@@ -197,14 +157,12 @@ def PrintReverse(number):
     :return: None
     :rtype: None
     """
-    if number==0:
+    if number == 0:
         return
-    mod= number%10
-    div= int(number/10)
-    if div ==0 :print("%d"%(mod))
-    else :print("%d*"%(mod),end=" ")
+    mod = number % 10
+    div = int(number / 10)
+    if div == 0:
+        print("%d" % (mod))
+    else:
+        print("%d*" % (mod), end=" ")
     PrintReverse(div)
-
-PrintReverse(1234567)
-
-
