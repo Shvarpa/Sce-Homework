@@ -5,16 +5,25 @@
 import random
 
 
-def integrate(a, b, f):
-    sum, sum_pow, tries = 0, 0, 1000
+def integrate(a, b, f, tries=10000):
+    """
+    :param a:left/starting point of integration
+    :type a:
+    :param b:right/ending point of integration
+    :type b:
+    :param f:function to intigrate
+    :type f:Function
+    :param tries:number of random tries for monte carlo method,
+    precision increases with number of tries, but so does computing time
+    :type tries:int
+    :return:result of intigration using monte carlo method
+    :rtype:float
+    """
+    sum = 0
     for _ in range(tries):
         x = random.uniform(a, b)
-        fx = f(x)
-        sum, sum_pow = sum + fx, sum_pow + (fx ** 2)
-        if _ % 50 == 0:
-            print("x={} , sum={} , sum_pow={}".format(x, sum, sum_pow))
-        sum, sum_pow = sum / tries, sum_pow / tries
-        return sum + ((sum_pow-sum**2)/tries)**0.5
+        sum += f(x)
+    return (sum / tries) * (b - a)
 
 
-print(integrate(0, 1, lambda x: 2))
+print(integrate(2, 4, lambda x: x + 2))
