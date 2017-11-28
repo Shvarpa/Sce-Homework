@@ -23,7 +23,8 @@ def Game():
     score = 100
     target = create_target()
     sum, mul, even_digits, big_digits, ascending, prime = False, False, False, False, False, False  # boolians indicating if the clue hasent been used, i dident put them in a list or dictionary because of the limitations of the assignment
-    clue_range = list(range(1,7))  #a sequance pool of integares corresponding to the clue names from wich the random function will generate a clue
+    clue_range = list(range(1,
+                            7))  # a sequance pool of integares corresponding to the clue names from wich the random function will generate a clue
 
     def use_clue():
         """
@@ -63,7 +64,8 @@ def Game():
             printF1("ascending order: ", f_ascending)
         elif clue == 6:
             def f_prime(number):
-                for n in range(2, number + 1):
+                for n in range(2, number):
+                    if n==1:return False
                     if (number % n == 0):
                         return False
                 return True
@@ -95,20 +97,20 @@ def Game():
         print(end='\n')
 
     def guess():
-        guess = int(input("enter number/Enter to finish: "))
+        guess_string=input("enter number/Enter to finish: ")
+        guess = None if guess_string=="" else int(guess_string)
         if guess == target:
             return True
         return False
 
     while score > 0:
-        print(target)
         use_clue()
         if guess():
             print("yes, correct, you win {} points".format(score))
             return True
         else:
             score -= 10
-    input("Game Over, press any button to continue")
+    input("Game Over, press any button to continue (FYI, the target number was {})".format(target))
     return False
 
 
