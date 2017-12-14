@@ -1,3 +1,8 @@
+"""
+    Home Work 2
+    Pavel Shvarchov - 319270583
+"""
+
 def make_mydate(day=1, month=1, year=2017):
 
     def generate_max_days_of_month():
