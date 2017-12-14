@@ -132,13 +132,15 @@ def print_cols(ma):
         print("col {}: {}".format(c, ma('get_col_data')(c)))
 
 
-m1 = make_matrix(2, 3, [1, 2, 3, 4, 5, 6])
-m2 = make_matrix(3, 2, [1, 2, 3, 4, 5, 6])
+def example():
+    m1 = make_matrix(2, 3, [1, 2, 3, 4, 5, 6])
+    m2 = make_matrix(3, 2, [1, 2, 3, 4, 5, 6])
+    PrintMatrix(m1)
+    print('++++++++')
+    PrintMatrix(m2)
+    print('++++++++')
+    PrintMatrix(MulMatrix(m1, m2))
+    print("++++++++")
 
-
-PrintMatrix(m1)
-print('____')
-PrintMatrix(m2)
-print('____')
-PrintMatrix(MulMatrix(m1, m2))
-print("____")
+if __name__=='__main__':
+    example()
