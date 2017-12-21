@@ -15,33 +15,40 @@ def make_matrix(rows, cols, data):
     size = rows * cols
 
     def get_row_count():
+        """returns row count"""
         return rows
 
     def get_col_count():
+        """returns column count"""
         return cols
 
     def get_row_data(row):
+        """returns a list containing matrix data corresponding to row number in [0,rows), used for multiply"""
         if row >= rows:
             return None
         indexes = range(row * cols, (row + 1) * cols)
         return [data[i] for i in indexes]
 
     def get_col_data(col):
+        """returns a list containing matrix data corresponding to column number in [0,cols), used for multiply"""
         if col >= cols:
             return None
         indexes = ((r * cols) + col for r in range(rows))
         return [data[i] for i in indexes]
 
     def get_data():
+        """returns matrix list data"""
         return data
 
     def print_data():
+        """proper print of a matrix"""
         for i in range(size):
             print(data[i], end=' ')
             if (i + 1) % cols == 0:
                 print()  # goes to next row
 
     def add(m2):
+        """returns a new added matrix"""
         if rows != n(m2) or cols != m(m2):
             return "cant add"
         data2 = matrix(m2)
@@ -50,12 +57,14 @@ def make_matrix(rows, cols, data):
         return added
 
     def transpose():
+        """returns a new transposed matrix"""
         data = []
         for c in range(cols):
             data += get_col_data(c)
         return make_matrix(cols, rows, data)
 
     def multiply(m2):
+        """returns a new multiplied matrix"""
         if cols != n(m2):
             return "can't multiply"
         data = []

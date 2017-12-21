@@ -4,6 +4,7 @@
 """
 
 
+
 def make_sequence(data, iterate=False):
     size = 0
     if iterate:
@@ -54,7 +55,6 @@ def make_sequence(data, iterate=False):
             'clear': clear,
             }
 
-#########test#############
 def example():
     s1 = make_sequence((1, 2, 3, 4, 5))
     print(s1['all_filter'](lambda x: x % 2 == 0))

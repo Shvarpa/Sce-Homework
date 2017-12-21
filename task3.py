@@ -6,6 +6,7 @@
 def make_mydate(day=1, month=1, year=2017):
 
     def generate_max_days_of_month():
+        """healper function returns max days of the given month"""
         if (month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10 or month == 12):
             max_days = 31
         elif (month == 4 or month == 6 or month == 9 or month == 11):
@@ -17,6 +18,7 @@ def make_mydate(day=1, month=1, year=2017):
         return max_days
 
     def possible_date(day, month, year):
+        """date possibility check"""
         if month < 1 or 12 < month or year < 0:
             return False
         max_days = generate_max_days_of_month()
@@ -24,10 +26,11 @@ def make_mydate(day=1, month=1, year=2017):
             return False
         return True
 
-    if not possible_date(day, month, year):
+    if not possible_date(day, month, year): #initial data check
         return "bad date"
 
     def next_date():
+        """updates date to next possible date"""
         nonlocal day,month,year
         max_days=generate_max_days_of_month()
         if day==max_days:
@@ -41,6 +44,7 @@ def make_mydate(day=1, month=1, year=2017):
             day+=1
 
     def days_between_dates(d2):
+        """returns the difference between dates of the same year and month"""
         if month!=d2('get')('month') or year!=d2('get')('year'):
             return 'different months or years not allowed'
         result=day-d2('get')('day')
@@ -48,6 +52,7 @@ def make_mydate(day=1, month=1, year=2017):
         return result
 
     def set_day(value):
+        """updates date day, but only of the day is possible in the current month"""
         nonlocal day
         max_days = generate_max_days_of_month()
         if value < 1 or max_days < value:
@@ -57,6 +62,7 @@ def make_mydate(day=1, month=1, year=2017):
             return 'day changed to {}'.format(day)
 
     def set_month(value):
+        """updates date month if a possible month, updates the day if out of bounds for the month"""
         nonlocal day, month
         if value < 1 or 12 < value:
             return 'bad value for month'
@@ -69,6 +75,7 @@ def make_mydate(day=1, month=1, year=2017):
         return 'month changed to {} '.format(month) + addon
 
     def set_year(value):
+        """updates the date year"""
         nonlocal year
         if value < 0:
             return 'bad value for year'
@@ -97,6 +104,7 @@ def make_mydate(day=1, month=1, year=2017):
 
 
     def view(type='dmy'):
+        """view date by the formats dmy,mdy,ymd"""
         if type == 'dmy':
             return "{:02d}/{:02d}/{:04d}".format(day, month, year)
         elif type == 'mdy':
@@ -121,7 +129,6 @@ def make_mydate(day=1, month=1, year=2017):
     return dispatch
 
 
-########test#######
 def example():
     d1 = make_mydate()
     print(d1('view')('mdy'))

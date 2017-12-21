@@ -6,20 +6,24 @@ from functools import reduce
 
 
 def enumerate(data):
+    """seperates values in input data by , and enumerates them to either int or float"""
     return list(map(lambda i: None if i == '' else float(i) if '.' in i else int(i), data.split(',')))
 
 
 def clean(data, min_val, max_val):
+    """removes out of range values in data"""
     return list(filter(lambda i: i == None or (min_val <= i and i <= max_val), data))
 
 
 def complete_missing_values(data):
+    """fixes missing values with averages of neighbours by index"""
     data = list(data)
     size = reduce(lambda x, y: x + 1, data, 0)
     return list(map(lambda x: (data[x - 1] + data[x + 1]) / 2 if data[x] == None else data[x], range(size)))
 
 
 def data_preprocessing_histogram(data, min_val, max_val):
+    """creates a histogram of values in data and in range of min,max val"""
     data = list(complete_missing_values(clean(enumerate(data), min_val, max_val)))
     size = reduce(lambda x, y: x + 1, data, 0)
     reduced=filter(lambda i:not data[i+1:].__contains__(data[i]), range(size))
@@ -29,6 +33,7 @@ def data_preprocessing_histogram(data, min_val, max_val):
     return list(zip(reduced,counts))
 
 def data_preprocessing_range(data,min_val,max_val):
+    """creates a tuple with the real min,max value contained in data and average of all values in data"""
     data = list(complete_missing_values(clean(enumerate(data), min_val, max_val)))
     min=reduce(lambda curr,x:x if x<curr else curr,data[1:],data[0])
     max=reduce(lambda curr,x:x if x>curr else curr,data[1:],data[0])
